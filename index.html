@@ -24,8 +24,28 @@
             min-height: 100vh;
             background-image: url('KMbappe_Web.png');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* Preserve parallax on desktop, optimize for mobile */
+        @media (max-width: 768px) {
+            .container {
+                background-size: cover;
+                background-position: center top;
+                background-attachment: fixed;
+                min-height: 120vh; /* Extra height for better mobile composition */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                background-size: auto 100vh;
+                background-position: center center;
+                background-attachment: fixed;
+                min-height: 130vh;
+            }
         }
 
         /* Dynamic overlay with gradient animation */
@@ -355,14 +375,23 @@
             .hero {
                 padding: 0 20px;
                 text-align: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+
+            .hero-content {
+                margin-top: 20vh; /* Push content down to avoid cropping Mbappé's head */
+                max-width: 100%;
             }
 
             .hero h1 {
                 font-size: 3rem;
+                line-height: 1.1;
             }
 
             .hero p {
                 font-size: 1.1rem;
+                margin-bottom: 40px;
             }
 
             .content-section {
@@ -378,18 +407,35 @@
                 gap: 20px;
             }
 
+            /* Keep the parallax effect on mobile - this is key! */
             .container {
-                background-attachment: scroll;
+                background-attachment: fixed !important;
             }
         }
 
         @media (max-width: 480px) {
+            .hero {
+                min-height: 110vh; /* More space for better composition */
+            }
+
+            .hero-content {
+                margin-top: 25vh; /* Even more space to show Mbappé properly */
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .cta-button {
                 padding: 12px 30px;
+                margin-top: 20px;
+            }
+
+            /* Ensure Mbappé is fully visible on small screens */
+            .container {
+                background-size: contain !important;
+                background-position: center 10% !important;
+                min-height: 140vh;
             }
         }
 
@@ -672,7 +718,7 @@
             </div>
             
             <div class="credits-footer">
-                <p>Made with <span class="heart">❤️</span> </p>
+                <p>Made with <span class="heart">❤️</span> and lots of energy</p>
             </div>
         </div>
 
@@ -795,12 +841,19 @@
             observer.observe(card);
         });
 
-        // Dynamic background position based on scroll
+        // Dynamic background position based on scroll - Enhanced for mobile
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const parallaxBg = document.querySelector('.container');
-            const speed = scrolled * 0.5;
-            parallaxBg.style.backgroundPosition = `center ${speed}px`;
+            const rate = scrolled * -0.3; // Slower, smoother parallax
+            
+            // Enhanced mobile parallax
+            if (window.innerWidth <= 768) {
+                const mobileRate = scrolled * -0.2;
+                parallaxBg.style.transform = `translate3d(0, ${mobileRate}px, 0)`;
+            } else {
+                parallaxBg.style.backgroundPosition = `center ${rate}px`;
+            }
         });
     </script>
 </body>
