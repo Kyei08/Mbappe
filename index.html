@@ -354,13 +354,33 @@
                 gap: 20px;
             }
 
+            .container {
+                background-attachment: scroll;
+                background-size: contain;
+                background-position: center center;
+                min-height: 100vh;
+                background-color: #2a2a2a;
+            }
+
             .hero {
-                padding: 0 20px;
+                padding: 120px 20px 40px;
                 text-align: center;
+                min-height: 100vh;
+                justify-content: flex-end;
+                align-items: center;
+            }
+
+            .hero-content {
+                background: rgba(0, 0, 0, 0.7);
+                padding: 30px 20px;
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+                margin-top: auto;
+                margin-bottom: 60px;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
 
             .hero p {
@@ -378,19 +398,6 @@
             .stats-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
-            }
-
-            .container {
-                background-attachment: scroll;
-                background-size: cover;
-                background-position: center top;
-                min-height: 120vh;
-            }
-
-            .hero {
-                padding-top: 120px;
-                min-height: 120vh;
-                align-items: flex-start;
             }
         }
 
@@ -640,7 +647,7 @@
         <div class="hero">
             <div class="hero-content">
                 <h1>KYLIAN MBAPPÉ</h1>
-                <p>Lightning Speed. Unstoppable Force. Football's Future.</p>
+                <p>Lightning Speed. Unstoppable Force. .</p>
                 <a href="#stats" class="cta-button">Explore Stats</a>
             </div>
         </div>
@@ -718,7 +725,7 @@
             </div>
             
             <div class="credits-footer">
-                <p>Made with <span class="heart">❤️</span> and lots of energy</p>
+                <p>Made with <span class="heart">❤️</span> </p>
             </div>
         </div>
 
