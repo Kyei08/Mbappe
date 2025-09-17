@@ -13,9 +13,20 @@
 
     body {
       font-family: 'Arial', sans-serif;
-      background: #fff;
+      background-color: #ffffff; /* White background */
       overflow-x: hidden;
-      color: #111;
+      color: #333; /* Dark text for contrast */
+    }
+
+    /* Particles container */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 9999; /* Highest z-index to be on top of everything throughout the website */
+      pointer-events: none; /* Allows clicks/hovers to pass through to elements below */
     }
 
     /* Hero container */
@@ -28,6 +39,7 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
+      z-index: 2; /* Still below particles, but above body */
     }
 
     /* Mbappé PNG */
@@ -38,7 +50,7 @@
       height: auto;
       object-fit: contain;
       transition: transform 0.3s ease-out;
-      z-index: 2;
+      z-index: 3; /* Image is below particles */
     }
 
     /* Overlay text */
@@ -47,7 +59,7 @@
       bottom: 8%;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 3;
+      z-index: 3; /* Text is below particles */
     }
 
     .hero h1 {
@@ -59,8 +71,152 @@
 
     .hero p {
       font-size: 1rem;
+      color: #333; /* Dark text */
+      font-weight: 600;
+    }
+
+    /* Statistics Section */
+    .statistics {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #f8f8f8;
+      z-index: 2;
+    }
+
+    .statistics h2 {
+      font-family: 'Georgia', serif;
+      font-size: 2.5rem;
+      color: #e76f00;
+      margin-bottom: 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 3;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(231, 111, 0, 0.2);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #e76f00;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
       color: #333;
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-description {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
+    /* Credits Section */
+    .credits {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #ffffff;
+      z-index: 2;
+    }
+
+    .credits h2 {
+      font-family: 'Georgia', serif;
+      font-size: 2.5rem;
+      color: #e76f00;
+      margin-bottom: 3rem;
+    }
+
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .credit-card {
+      background: #f8f8f8;
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 3;
+    }
+
+    .credit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(231, 111, 0, 0.2);
+    }
+
+    .credit-role {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #e76f00;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .credit-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .credit-contact {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .credit-contact a {
+      color: #e76f00;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .credit-contact a:hover {
+      color: #333;
+      text-decoration: underline;
     }
 
     /* Tablet/Desktop adjustments */
@@ -76,16 +232,72 @@
       .hero p {
         font-size: 1.3rem;
       }
+
+      .statistics h2 {
+        font-size: 3rem;
+      }
+
+      .credits h2 {
+        font-size: 3rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+
+      .stat-number {
+        font-size: 3.5rem;
+      }
+
+      .stat-label {
+        font-size: 1.2rem;
+      }
     }
 
     @media (min-width: 1200px) {
       .hero img {
         max-width: 700px;
       }
+
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 767px) {
+      .statistics {
+        padding: 1.5rem 1rem;
+      }
+
+      .statistics h2 {
+        font-size: 2rem;
+      }
+
+      .credits h2 {
+        font-size: 2rem;
+      }
+
+      .stat-card {
+        padding: 1.5rem;
+      }
+
+      .credit-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
+
+  <div id="particles-js"></div>
+
   <section class="hero">
     <img src="KMbappe_Web.png" alt="Kylian Mbappé" id="mbappe">
     <div class="text">
@@ -94,13 +306,165 @@
     </div>
   </section>
 
+  <!-- Statistics Section -->
+  <section class="statistics">
+    <h2>Career Statistics</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">280+</span>
+        <span class="stat-label">Goals</span>
+        <p class="stat-description">Career goals across all competitions</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">130+</span>
+        <span class="stat-label">Assists</span>
+        <p class="stat-description">Career assists creating opportunities</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">2x</span>
+        <span class="stat-label">World Cup</span>
+        <p class="stat-description">FIFA World Cup winner & runner-up</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">6x</span>
+        <span class="stat-label">Ligue 1</span>
+        <p class="stat-description">French championship titles</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credits Section -->
+  <section class="credits">
+    <h2>Credits</h2>
+    <div class="credits-grid">
+      <div class="credit-card">
+        <div class="credit-role">Web Designer</div>
+        <div class="credit-name">Emmanuel Bediako</div>
+        <div class="credit-contact">
+          <a href="mailto:bediakoemmanuel036@gmail.com">bediakoemmanuel036@gmail.com</a>
+        </div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-role">Graphic Designer</div>
+        <div class="credit-name">Pxblo Picxsso</div>
+        <div class="credit-contact">
+          <a href="https://linktr.ee/pxblopicxsso" target="_blank">https://linktr.ee/pxblopicxsso</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // Simple parallax effect for Mbappé image
+    // Parallax effect
     const mbappe = document.getElementById('mbappe');
     document.addEventListener('mousemove', (e) => {
       const x = (window.innerWidth / 2 - e.pageX) / 40;
       const y = (window.innerHeight / 2 - e.pageY) / 40;
       mbappe.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    // Particles.js configuration
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": ["#e76f00", "#333", "#ffffff"] /* Orange, dark grey, and white particles for variety */
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.7, /* Slightly increased opacity */
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": false
+        },
+        "move": {
+          "enable": true,
+          "speed": 6,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 400,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 150,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
     });
   </script>
 </body>
